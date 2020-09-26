@@ -146,7 +146,7 @@ function packageDictionary(
 ): Record<Package, VersionString> {
     return packages.reduce(
         (acc, {name, version}) => Object.assign(acc, {[name]: `^${version}`}),
-        Object.create(null)
+        {} as Record<Package, VersionString>
     )
 }
 
@@ -163,7 +163,7 @@ function updateDependencies(
                 acc,
                 {[pkg]: dependencies[pkg] || version}
             ),
-            Object.create(null)
+            {} as Record<Package, VersionString>
         )
 
         return readFile(packageJson, 'utf8')
